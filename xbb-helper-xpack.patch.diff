@@ -1,0 +1,53 @@
+diff --git a/dependencies/gcc-cross.sh b/dependencies/gcc-cross.sh
+index 4f76299..55fff3f 100644
+--- a/dependencies/gcc-cross.sh
++++ b/dependencies/gcc-cross.sh
+@@ -403,6 +403,17 @@ function gcc_cross_build_first()
+             config_options+=("--with-abi=${XBB_APPLICATION_GCC_ABI}")
+             config_options+=("--with-arch=${XBB_APPLICATION_GCC_ARCH}")
+ 
++            if [ "${XBB_WITHOUT_MULTILIB}" == "y" ]
++            then
++              config_options+=("--disable-multilib")
++            else
++              config_options+=("--enable-multilib")
++            fi
++          elif [ "${triplet}" == "riscv-none-embed" ]
++          then
++            config_options+=("--with-abi=${XBB_APPLICATION_GCC_ABI}")
++            config_options+=("--with-arch=${XBB_APPLICATION_GCC_ARCH}")
++
+             if [ "${XBB_WITHOUT_MULTILIB}" == "y" ]
+             then
+               config_options+=("--disable-multilib")
+@@ -705,6 +716,17 @@ function gcc_cross_build_final()
+             config_options+=("--with-abi=${XBB_APPLICATION_GCC_ABI}")
+             config_options+=("--with-arch=${XBB_APPLICATION_GCC_ARCH}")
+ 
++            if [ "${XBB_WITHOUT_MULTILIB}" == "y" ]
++            then
++              config_options+=("--disable-multilib")
++            else
++              config_options+=("--enable-multilib")
++            fi
++          elif [ "${triplet}" == "riscv-none-embed" ]
++          then
++            config_options+=("--with-abi=${XBB_APPLICATION_GCC_ABI}")
++            config_options+=("--with-arch=${XBB_APPLICATION_GCC_ARCH}")
++
+             if [ "${XBB_WITHOUT_MULTILIB}" == "y" ]
+             then
+               config_options+=("--disable-multilib")
+diff --git a/dependencies/newlib-cross.sh b/dependencies/newlib-cross.sh
+index 4c0cbe3..30d4b36 100644
+--- a/dependencies/newlib-cross.sh
++++ b/dependencies/newlib-cross.sh
+@@ -69,7 +69,7 @@ function newlib_cross_build()
+     if [ ! -d "${XBB_NEWLIB_SRC_FOLDER_NAME}" ]
+     then
+       download_and_extract "${XBB_NEWLIB_ARCHIVE_URL}" "${XBB_NEWLIB_ARCHIVE_NAME}" \
+-      "${XBB_NEWLIB_SRC_FOLDER_NAME}"
++      "${XBB_NEWLIB_SRC_FOLDER_NAME}" "${XBB_NEWLIB_PATCH_FILE_NAME}"
+ 
+       # No longer needed, sed 4.9 is now a dependency.
+       # if [ "${XBB_BUILD_PLATFORM}" == "darwin" ]

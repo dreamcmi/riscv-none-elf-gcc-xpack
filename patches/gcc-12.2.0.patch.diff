@@ -1,0 +1,28 @@
+diff --git a/config.sub b/config.sub
+index 38f3d037a..e50c2dcda 100755
+--- a/config.sub
++++ b/config.sub
+@@ -1751,6 +1751,9 @@ case $os in
+ 	     | nsk* | powerunix* | genode* | zvmoe* | qnx* | emx* | zephyr* \
+ 	     | fiwix* )
+ 		;;
++	# xPack GNU RISC-V Embed GCC uses riscv-none-embed-*.
++	embed)
++		;;
+ 	# This one is extra strict with allowed versions
+ 	sco3.2v2 | sco3.2v[4-9]* | sco5v6*)
+ 		# Don't forget version if it is 3.2v4 or newer.
+diff --git a/gcc/config.gcc b/gcc/config.gcc
+index c5064dd37..131208b6d 100644
+--- a/gcc/config.gcc
++++ b/gcc/config.gcc
+@@ -2460,7 +2460,8 @@ riscv*-*-linux*)
+ 	# automatically detect that GAS supports it, yet we require it.
+ 	gcc_cv_initfini_array=yes
+ 	;;
+-riscv*-*-elf* | riscv*-*-rtems*)
++# xPack GNU RISC-V Embed GCC.
++riscv*-*-elf* | riscv*-*-rtems* | riscv-none-embed)
+ 	tm_file="elfos.h newlib-stdint.h ${tm_file} riscv/elf.h"
+ 	case ${target} in
+ 	*-*-rtems*)

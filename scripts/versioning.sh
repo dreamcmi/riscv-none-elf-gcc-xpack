@@ -137,7 +137,8 @@ function application_build_versioned_components()
     XBB_BINUTILS_ARCHIVE_NAME="binutils-${XBB_BINUTILS_VERSION}.tar.xz"
     XBB_BINUTILS_ARCHIVE_URL="https://ftp.gnu.org/gnu/binutils/${XBB_BINUTILS_ARCHIVE_NAME}"
 
-    XBB_BINUTILS_PATCH_FILE_NAME="binutils-${XBB_BINUTILS_VERSION}.patch"
+    XBB_BINUTILS_PATCH_FILE_NAME="binutils-${XBB_BINUTILS_VERSION}.patch.diff"
+    check_patch "${XBB_BINUTILS_PATCH_FILE_NAME}"
 
     # XBB_GCC_VERSION computer from XBB_RELEASE_VERSION
     XBB_GCC_SRC_FOLDER_NAME="gcc-${XBB_GCC_VERSION}"
@@ -147,6 +148,8 @@ function application_build_versioned_components()
     # The Apple Silicon host patches are already in for 12.x.
     # GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}-cross.git.patch"
     # check_patch "${GCC_PATCH_FILE_NAME}"
+    XBB_GCC_PATCH_FILE_NAME="gcc-${XBB_GCC_VERSION}.patch.diff"
+    check_patch "${XBB_GCC_PATCH_FILE_NAME}"
 
     # https://www.sourceware.org/ftp/newlib/index.html
     # ftp://sourceware.org/pub/newlib/newlib-4.2.0.20211231.tar.gz
@@ -158,6 +161,9 @@ function application_build_versioned_components()
 
     XBB_ENABLE_NEWLIB_RISCV_NANO_CXX_PATCH="y"
 
+    XBB_NEWLIB_PATCH_FILE_NAME="newlib-${XBB_NEWLIB_VERSION}.patch.diff"
+    check_patch "${XBB_NEWLIB_PATCH_FILE_NAME}"
+
     # https://ftp.gnu.org/gnu/gdb/
     # https://ftp.gnu.org/gnu/gdb/gdb-11.2.tar.xz
     # https://ftp.gnu.org/gnu/gdb/gdb-12.1.tar.xz
@@ -168,7 +174,7 @@ function application_build_versioned_components()
     XBB_GDB_ARCHIVE_URL="https://ftp.gnu.org/gnu/gdb/${XBB_GDB_ARCHIVE_NAME}"
 
     # Mandatory, otherwise gdb-py3 is not relocatable.
-    XBB_GDB_PATCH_FILE_NAME="gdb-${XBB_GDB_VERSION}-cross.git.patch"
+    XBB_GDB_PATCH_FILE_NAME="gdb-${XBB_GDB_VERSION}.patch.diff"
     check_patch "${XBB_GDB_PATCH_FILE_NAME}"
 
     # https://www.python.org/ftp/python/
