@@ -11,6 +11,11 @@ binary distribution, intended for reproducible builds.
 In addition to the the binary archives and the package meta data,
 this project also includes the build scripts.
 
+
+## Support `riscv-none-embed` prefix file
+After command `xpm install`, copy the `xbb-helper-xpack.patch.diff` to `~/Work/xpacks/riscv-none-elf-gcc-xpack.git/xpacks/xpack-dev-tools-xbb-helper`, and patch it.
+
+
 ### Deprecation notice
 
 This project replaces the deprecated
